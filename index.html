@@ -1,55 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Floppy Dog 🐶</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Telegram Mini App SDK -->
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
-  <style>
-    body {
-      margin: 0;
-      background: #0f172a;
-      font-family: Arial, sans-serif;
-      color: white;
-    }
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-    .screen {
-      display: none;
-      height: 100vh;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-    }
+  <div id="game-container">
+    <div id="start-screen">
+      <h1>🐶 Floppy Dog</h1>
+      <button id="startBtn">Play Now</button>
+    </div>
 
-    .screen.active {
-      display: flex;
-    }
+    <canvas id="game"></canvas>
+  </div>
 
-    h1 {
-      font-size: 32px;
-      margin-bottom: 10px;
-    }
+  <!-- JS -->
+  <script src="game.js"></script>
 
-    button {                                                  background: #22c55e;
-      border: none;                                           padding: 15px 30px;                                     font-size: 18px;                                        border-radius: 12px;                                    cursor: pointer;
-    }                                                   
-    button:active {                                           transform: scale(0.96);
-    }                                                   
-    #game {                                                   background: #38bdf8;
-      width: 320px;                                           height: 480px;
-      border-radius: 16px;                                    display: flex;                                          align-items: center;                                    justify-content: center;
-      font-size: 22px;                                      }
-  </style>                                              </head>
-<body>                                                                                                            <!-- START SCREEN -->                                   <div id="start" class="screen active">                    <h1>🐶 Floppy Dog</h1>                                  <p>Earn 🦴 bones by playing</p>
-    <button onclick="startGame()">Play Now</button>       </div>                                                                                                          <!-- GAME SCREEN -->
-  <div id="play" class="screen">                            <div id="game">Game running…</div>                      <br>                                                    <button onclick="goBack()">Exit</button>              </div>                                                                                                          <script>                                                  const tg = window.Telegram.WebApp;
-    tg.expand();                                                                                                    function startGame() {                                    document.getElementById("start").classList.remove("active");                                                    document.getElementById("play").classList.add("active");                                                      }
-                                                            function goBack() {
-      document.getElementById("play").classList.remove("active");
-      document.getElementById("start").classList.add("active");
-    }                                                     </script>
-                                                        </body>
+  <script>
+    const tg = window.Telegram?.WebApp;
+    if (tg) tg.expand();
+
+    document.getElementById("startBtn").onclick = () => {
+      document.getElementById("start-screen").style.display = "none";
+    };
+  </script>
+
+</body>
 </html>
